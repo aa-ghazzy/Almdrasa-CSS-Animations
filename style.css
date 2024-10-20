@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: grey;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.clockWrapper {
+  position: relative;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  cursor: pointer;
+}
+
+.box {
+  width: 400px;
+  aspect-ratio: 1/1;
+  background-color: #41c5f1;
+  border-radius: 5px;
+  display: grid;
+  place-content: center;
+}
+
+.text {
+  display: inline-block;
+  color: hsl(0, 0%, 93%);
+  font-size: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  position: absolute;
+  bottom: -150%;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: black;
+  z-index: 2;
+  position: relative;
+}
+
+.clockArrow {
+  position: absolute;
+  width: 10px;
+  height: 190px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  translate: 195px 10px;
+  transform-origin: bottom;
+  animation: clock-arrow infinite 60s steps(60);
+  z-index: 1;
+}
+
+.planet {
+  width: 350px;
+  aspect-ratio: 1/1;
+  background-color: hsl(195, 86%, 45%);
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+
+.moon {
+  width: 100px;
+  align-self: center;
+  aspect-ratio: 1/1;
+  background-color: hsl(0, 0%, 93%);
+  border-radius: 50%;
+  translate: -250% -250%;
+  transform-origin: 300% 300%;
+  animation: moon-cycle 15s infinite linear,
+    moon-cycle calc(15s / 0.5) infinite linear reverse paused;
+  animation-composition: add;
+}
+
+.clockWrapper:hover .moon {
+  animation-play-state: running;
+}
+
+@keyframes clock-arrow {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes moon-cycle {
+  to {
+    rotate: 360deg;
+  }
+}
